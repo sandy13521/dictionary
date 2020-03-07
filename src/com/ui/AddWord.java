@@ -2,13 +2,15 @@ package com.ui;
 
 import com.database.AddWorddb;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class AddWord {
-    public static void main(JFrame front){
+class AddWord {
+    private static JLabel result;
+    public static void main(){
         JFrame addf = new JFrame("Add Word To Dictionary");
-        addf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        addf.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         addf.setLayout(null);
         addf.setBounds(200,200,500,600);
         addf.setVisible(true);
@@ -19,19 +21,25 @@ public class AddWord {
         JTextField wordHolder= new JTextField();
         wordHolder.setBounds(50,100,200,40);
 
-
         JLabel meaning = new JLabel("Enter the Meaning Here : ");
         meaning.setBounds(50,150,200,30);
 
         JTextField emeaning = new JTextField();
         emeaning.setBounds(50,190,200,100);
 
+        result = new JLabel();
+        result.setBounds(100,400,200,100);
+        result.setFont(Font.getFont(Font.SERIF));
+
         JButton add = new JButton("Add Word");
         add.setBounds(100,300,100,50);
         add.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                AddWorddb.main(wordHolder.getText(),emeaning.getText());
+                if(AddWorddb.main(wordHolder.getText(),emeaning.getText()))
+                    result.setText("Inserted " + wordHolder.getText() + " successfully");
+                else
+                    result.setText("Could Not Inserted " + wordHolder.getText());
             }
         });
 
@@ -40,6 +48,7 @@ public class AddWord {
         addf.add(meaning);
         addf.add(emeaning);
         addf.add(add);
+        addf.add(result);
     }
 
 }
