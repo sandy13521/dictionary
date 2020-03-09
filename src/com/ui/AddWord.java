@@ -12,34 +12,40 @@ class AddWord {
         JFrame addf = new JFrame("Add Word To Dictionary");
         addf.setDefaultCloseOperation(WindowConstants.HIDE_ON_CLOSE);
         addf.setLayout(null);
-        addf.setBounds(200,200,500,600);
+        addf.setBounds(200,200,350,500);
         addf.setVisible(true);
 
         JLabel wordDisplay = new JLabel("Enter the Word Here : ");
-        wordDisplay.setBounds(50,60,200,25);
+        wordDisplay.setBounds(60,40,200,25);
 
         JTextField wordHolder= new JTextField();
-        wordHolder.setBounds(50,100,200,40);
+        wordHolder.setBounds(60,70,200,40);
 
         JLabel meaning = new JLabel("Enter the Meaning Here : ");
-        meaning.setBounds(50,150,200,30);
+        meaning.setBounds(60,150,200,30);
 
         JTextField emeaning = new JTextField();
-        emeaning.setBounds(50,190,200,100);
+        emeaning.setBounds(60,180,200,40);
+        emeaning.setAutoscrolls(true);
 
         result = new JLabel();
-        result.setBounds(100,400,200,100);
-        result.setFont(Font.getFont(Font.SERIF));
+        result.setBounds(60,330,300,100);
+        result.setFont(new Font(Font.MONOSPACED, Font.BOLD,12));
 
         JButton add = new JButton("Add Word");
-        add.setBounds(100,300,100,50);
+        add.setFont(Font.getFont(Font.MONOSPACED));
+        add.setBounds(90,250,100,40);
         add.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(AddWorddb.main(wordHolder.getText(),emeaning.getText()))
+                System.out.println(wordHolder.getText()+ "\t" + emeaning.getText());
+                if(AddWorddb.main(wordHolder.getText(),emeaning.getText())) {
                     result.setText("Inserted " + wordHolder.getText() + " successfully");
+                    emeaning.setText("");
+                    wordHolder.setText("");
+                }
                 else
-                    result.setText("Could Not Inserted " + wordHolder.getText());
+                    result.setText("Could Not Inserted " + wordHolder.getText() + " , Try Editing ");
             }
         });
 
