@@ -54,7 +54,6 @@ public class Front {
 
 		JButton b4 = new JButton("List All Words");
 		b4.setFont(Font.getFont(Font.SERIF));
-
 		b4.setBounds(0, 300, front.getWidth(), 100);
 		b4.setForeground(Color.black);
 		b4.setBackground(Color.yellow);
