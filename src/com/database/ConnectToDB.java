@@ -10,7 +10,7 @@ public class ConnectToDB {
             Class.forName("com.mysql.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost:3306/dictionary?useSSL=false", "root", "");
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("Exception Caught");
         }
         return con;
     }
